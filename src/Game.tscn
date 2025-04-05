@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://bf0sb32dnjstn"]
+
+[ext_resource type="PackedScene" uid="uid://bajjk2ter3cpd" path="res://src/BoxSmall.tscn" id="1"]
+[ext_resource type="Script" uid="uid://bqxmt73tospgo" path="res://src/game.gd" id="1_km1yn"]
+[ext_resource type="PackedScene" uid="uid://c6xwdc0w2qegq" path="res://src/Box.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://src/Godette.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://x1foswk0gxmv" path="res://assets/textures/pixelGuy/pixelGuy.png" id="4_7omc5"]
+[ext_resource type="Texture2D" uid="uid://xcy0qqawyhxg" path="res://assets/textures/healthBar/healthBarEmpty.png" id="6_dbp7n"]
+[ext_resource type="Texture2D" uid="uid://dvjotgdtvajl4" path="res://assets/textures/healthBar/healthBarFull.png" id="7_rgpsw"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_km1yn")
+
+[node name="BoxSmall" parent="." instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -2)
+
+[node name="Box" parent="." instance=ExtResource("2")]
+
+[node name="Box2" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
+
+[node name="Box3" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+
+[node name="Box4" parent="." instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 16)
+
+[node name="Player" parent="." instance=ExtResource("3")]
+
+[node name="CollisionShape3D" parent="Player" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.190252, 0.402418, -1.0978)
+
+[node name="Sprite3D" parent="Player/RotationOffset" index="0"]
+transform = Transform3D(0.4, -1.11759e-08, 7.45058e-08, -1.86844e-08, 0.4, -5.96046e-08, 1.93237e-08, 5.96046e-08, 0.4, 0, 1.56375, 0.43807)
+texture = ExtResource("4_7omc5")
+
+[node name="Camera3D" parent="Player/RotationOffset/Sprite3D" index="0"]
+transform = Transform3D(2.5, 2.46231e-07, -5.86435e-07, -5.96048e-08, 2.5, -1.19209e-06, 4.40536e-13, 1.19209e-06, 2.5, -0.075416, -0.512068, 47.8092)
+
+[node name="Timer" type="Timer" parent="Player"]
+wait_time = 0.25
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.93302, 0.221763, 0.283365, -0.358723, 0.634864, 0.6843, -0.0281458, -0.740115, 0.671892, 11.3637, 10.5365, 0)
+light_indirect_energy = 0.0
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 0.01
+directional_shadow_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UIRoot" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.846
+anchor_top = 0.824
+anchor_right = 0.846
+anchor_bottom = 0.824
+offset_left = -245.32
+offset_top = -88.92
+offset_right = 243.68
+offset_bottom = 88.08
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HPBar" type="TextureProgressBar" parent="CanvasLayer/UIRoot"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.812
+anchor_top = -4.519
+anchor_right = -2.812
+anchor_bottom = -4.519
+offset_left = 1697.07
+offset_top = 872.863
+offset_right = 1825.07
+offset_bottom = 1002.86
+fill_mode = 3
+texture_under = ExtResource("6_dbp7n")
+texture_progress = ExtResource("7_rgpsw")
+
+[editable path="Player"]
